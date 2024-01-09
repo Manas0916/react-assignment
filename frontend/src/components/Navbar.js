@@ -1,16 +1,12 @@
-import Nav from 'react-bootstrap/Nav';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <Nav className='nav'>
-        <Nav.Item className='nav-item'>
-            <Nav.Link className='Nav-link' href="/shifts" active={window.location.pathname === "/shifts"}>My Shifts</Nav.Link>
-        </Nav.Item>
-        <Nav.Item className='nav-item'>
-            <Nav.Link className='Nav-link' href='/availableshifts' active={window.location.pathname === "/availableshifts"}>Available Shifts</Nav.Link>
-        </Nav.Item>
-    </Nav>
+    <nav className='nav'>
+        <Link className="nav-link active " to='/shifts' active={window.location.pathname === "/shifts"}>My Shifts</Link>
+        <Link className="nav-link" to='/availableshifts' active={window.location.pathname === "/availableshifts"}>Available Shifts</Link>
+    </nav>
   );
 }
 

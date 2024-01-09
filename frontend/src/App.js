@@ -1,5 +1,4 @@
 import './App.css';
-import React from 'react';
 import Navbar from './components/Navbar';
 import {Routes, Route } from "react-router-dom";
 import Shifts from './components/Shifts';
@@ -13,7 +12,6 @@ function App() {
         <Route path='/shifts' element={<Shifts/>}/>
         <Route path='/availableshifts' element={<AvailableShifts/>}/>
       </Routes>
-
     </div>
   );
 }

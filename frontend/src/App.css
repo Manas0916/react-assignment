@@ -6,30 +6,18 @@
   min-height: 100vh;
 }
 
-.Nav-link {
+.nav {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-link {
   text-decoration: none;
   color: #A4B8D3;
 }
 .nav-item{
   margin: 2rem;
 }
-.Nav-link.active {
+.nav-link.active {
   color: #004FB4;
 }
-.nav {
-  display: flex;
-  justify-content: center;
-}
-
-.card {
-  background-color: #fff;
-  border-radius: 15px;
-}
-
-/* .App-header {
-  
-  /* display: flex; */
-  /* flex-direction: column; } */
-
-/* .App-link {
-  color: #61dafb;} */
