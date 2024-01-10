@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import spinner from '../../assets/spinner_green.svg';
 
 const AvailableItem = ({shift}) => {
   
   const [isBooked, setIsBooked] = useState(shift.booked);
+  const [isLoading, setIsLoading] = useState(false);
 
   const startTimestamp = shift.startTime;
   const endTimestamp = shift.endTime;
@@ -14,25 +16,27 @@ const AvailableItem = ({shift}) => {
   const endHours = endTime.getHours();
   const endMinutes = endTime.getMinutes();
 
+
   useEffect(() => {
-    // Check if the shift is already booked
     setIsBooked(shift.booked);
   }, [shift.booked]);
 
 
   const handleBookClick = async () => {
     try {
+      setIsLoading(true);
+
       const response = await axios.post(`http://127.0.0.1:8080/shifts/${shift.id}/book`);
-  
+
       if (response.status === 200) {
-        // Update the state to mark the shift as booked
         setIsBooked(true);
       } else {
-        // Handle error if needed
         console.error('Failed to book shift:', response.statusText);
       }
     } catch (error) {
       console.error('Error during booking:', error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -41,11 +45,15 @@ const AvailableItem = ({shift}) => {
         <ul className='list-unstyled d-flex flex-column'>
             <li className='d-flex justify-content-start time'>{startHours}:{startMinutes !== 0 ? startMinutes: '00'} - {endHours}:{endMinutes !== 0 ? endMinutes : '00'}</li> 
         </ul>
-        <button type='button' className={`btn ${isBooked ? 'btn-outline-secondary' : 'btn-outline-danger'} fw-semibold rounded-pill`}
-        onClick={isBooked ? null : handleBookClick} // Disable the button if already booked
-        disabled={isBooked} // Disable the button if already booked 
+        <button type='button' className={`btn button ${isBooked ? 'btn-outline-secondary' : 'btn-outline-success'} fw-semibold rounded-pill`}
+        onClick={isBooked ? null : handleBookClick} 
+        disabled={isBooked} 
         >
-        {isBooked ? 'Booked' : 'Book'}
+        {isLoading ? (
+          <img src={spinner} alt="Loading" style={{ height: '1.5em', marginRight: '0.5em' }} />
+        ) : (
+          isBooked ? 'Booked' : 'Book'
+        )}
       </button>
     </li>
   )

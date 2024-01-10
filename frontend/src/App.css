@@ -45,8 +45,21 @@
   color: #E2006A;
 }
 
+
+.button{
+  width: 10%;
+  height: min-content;
+
+  border: 1px solid #55CB82;
+  color: #55CB82;
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #55CB82;
+}
+
 .subtitle{
   font-size:medium;
   color: #A4B8D3;
 }
-

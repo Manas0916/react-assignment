@@ -6,7 +6,7 @@ import useFetch from '../../hooks/useFetch';
 
 
 const AvailableShifts = () => {
-
+// eslint-disable-next-line
   const { data, loading, error } = useFetch('http://127.0.0.1:8080/shifts');
   const cities = ['Helsinki', 'Tampere', 'Turku'];
   const [selectedCity, setSelectedCity] = useState('Helsinki'); // Default to Helsinki
@@ -38,7 +38,7 @@ const groupedAvailableShifts = filterAndGroupAvailableShifts(data, selectedCity)
             {shifts
               .sort((a, b) => a.startTime === b.startTime ? a.endTime - b.endTime : a.startTime - b.startTime) // Sort shifts by startTime
               .map((shift) => (
-                <AvailableItem key={shift.id} shift={shift} />
+                <AvailableItem key={shift.id} shift={shift}/>
             ))}
         </React.Fragment>
       ))}
