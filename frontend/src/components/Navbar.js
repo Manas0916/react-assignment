@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -7,6 +7,11 @@ const Navbar = () => {
   const handleLinkClick = (to) => {
     setActiveLink(to);
   };
+
+  useEffect(() => {
+    const currentPathname = window.location.pathname;
+    setActiveLink(currentPathname);
+  }, []);
 
   return (
     <div className='container d-flex'>
