@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import AvailableTitle from './AvailableTitle'
 import AvailableItem from './AvailableItem'
 import AvailableNav from './AvailableNav'
@@ -9,7 +9,13 @@ const AvailableShifts = () => {
 // eslint-disable-next-line
   const { data, loading, error } = useFetch('http://127.0.0.1:8080/shifts');
   const cities = ['Helsinki', 'Tampere', 'Turku'];
-  const [selectedCity, setSelectedCity] = useState('Helsinki'); // Default to Helsinki
+  const [selectedCity, setSelectedCity] = useState('Helsinki');
+
+  const [shiftsData, setShiftsData] = useState([]);
+ 
+  useEffect(() => {
+    setShiftsData(data);
+  }, [data]);
 
 // Function to filter available shifts by the selected city and group them by date
 const filterAndGroupAvailableShifts = (shifts, selectedCity) => {
@@ -25,6 +31,9 @@ const filterAndGroupAvailableShifts = (shifts, selectedCity) => {
   return groupedShifts;
 };
 
+const filterBookedShifts = (shifts) => shifts.filter((shift) => shift.booked);
+const bookedShifts = filterBookedShifts(shiftsData);
+
 // Filter and group available shifts for the selected cities
 const groupedAvailableShifts = filterAndGroupAvailableShifts(data, selectedCity);
 
@@ -38,7 +47,7 @@ const groupedAvailableShifts = filterAndGroupAvailableShifts(data, selectedCity)
             {shifts
               .sort((a, b) => a.startTime === b.startTime ? a.endTime - b.endTime : a.startTime - b.startTime) // Sort shifts by startTime
               .map((shift) => (
-                <AvailableItem key={shift.id} shift={shift}/>
+                <AvailableItem key={shift.id} shift={shift} bookedShifts={bookedShifts}/>
             ))}
         </React.Fragment>
       ))}
