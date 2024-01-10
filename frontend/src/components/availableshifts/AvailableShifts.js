@@ -29,7 +29,7 @@ const filterAndGroupAvailableShifts = (shifts, selectedCity) => {
 const groupedAvailableShifts = filterAndGroupAvailableShifts(data, selectedCity);
 
   return (
-    <div className='container'>
+    <div className='container mb-5 pb-5'>
     <ul className="list-group d-flex mx-4 shadow">
       <AvailableNav cities={cities} selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
       {Object.entries(groupedAvailableShifts).map(([date, shifts]) => (
