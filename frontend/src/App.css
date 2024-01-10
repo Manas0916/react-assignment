@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  font-size: calc(8px + 2vmin);
+  /* font-size: calc(5px + 2vmin); */
+  font-size: 1.4rem;
   align-items: center;
   margin-top: 5%;
   min-height: 100vh;
@@ -14,10 +15,38 @@
 .nav-link {
   text-decoration: none;
   color: #A4B8D3;
-}
-.nav-item{
-  margin: 2rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
 }
 .nav-link.active {
   color: #004FB4;
 }
+
+.time{
+  font-size: smaller;
+  color: #4F6C92;
+}
+.city{
+  font-size: 1.3rem;
+  color: #A4B8D3;
+}
+
+.btn {
+  width: 10%;
+  height: min-content;
+
+  border: 1px solid #E2006A;
+  color: #E2006A;
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: #E2006A;
+}
+
+.subtitle{
+  font-size:medium;
+  color: #A4B8D3;
+}
+

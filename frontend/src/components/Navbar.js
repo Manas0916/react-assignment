@@ -1,13 +1,25 @@
-import '../App.css';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+const Navbar = () => {
+  const [activeLink, setActiveLink] = useState('/shifts');
+
+  const handleLinkClick = (to) => {
+    setActiveLink(to);
+  };
+
   return (
-    <nav className='nav'>
-        <Link className="nav-link active " to='/shifts' active={window.location.pathname === "/shifts"}>My Shifts</Link>
-        <Link className="nav-link" to='/availableshifts' active={window.location.pathname === "/availableshifts"}>Available Shifts</Link>
+    <div className='container d-flex'>
+    <nav className='nav text-start'>
+      <Link className={activeLink === '/shifts' ? 'nav-link active' : 'nav-link'} to='/shifts' onClick={() => handleLinkClick('/shifts')}>
+        My Shifts
+      </Link>
+      <Link className={activeLink === '/availableshifts' ? 'nav-link active' : 'nav-link'} to='/availableshifts' onClick={() => handleLinkClick('/availableshifts')}>
+        Available Shifts
+      </Link>
     </nav>
+    </div>
   );
-}
+};
 
 export default Navbar;

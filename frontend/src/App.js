@@ -1,8 +1,8 @@
+import { Route, Routes } from "react-router-dom";
 import './App.css';
+import AvailableShifts from './components/availableshifts/AvailableShifts';
 import Navbar from './components/Navbar';
-import {Routes, Route } from "react-router-dom";
-import Shifts from './components/Shifts';
-import AvailableShifts from './components/AvailableShifts';
+import Shifts from './components/myshifts/Shifts';
 
 function App() {
   return (
